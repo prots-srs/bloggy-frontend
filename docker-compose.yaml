@@ -1,0 +1,7 @@
+# https://docs.docker.com/go/compose-spec-reference/
+services:
+  frontend:
+  container_name: bloggy-frontend
+  dockerfile: Dockerfile
+  ports:
+    - "3000:3000"
