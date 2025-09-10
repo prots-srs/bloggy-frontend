@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import messages from '@lib/messages';
-import PageHeader from "./pageheader";
+import PageHeader from "@components/pageheader";
 import Link from 'next/link'
 
 export default function Menu() {

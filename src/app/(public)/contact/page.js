@@ -2,7 +2,8 @@
 import getRequest from '@lib/data';
 import { Suspense } from "react";
 import Loading from "../loading";
-import ContactsView from '@/app/components/contactsview';
+import ContactsView from '@components/contactsview';
+import FeedbackForm from '@components/feedbackform';
 
 const pageData = await getRequest("contacts");
 
@@ -14,11 +15,34 @@ export async function generateMetadata() {
 }
 
 export default async function Contact() {
+
+  const [formConfig, csrf] = await Promise.all([
+    getRequest("feedback"),
+    getRequest("csrf")
+  ]);
+
+  let contactView = null;
   if (pageData) {
-    return (
+    contactView = (
       <Suspense fallback={<Loading />}>
         <ContactsView data={pageData} />
       </Suspense>
     );
   }
+
+  let formView = null;
+  if (formConfig && csrf) {
+    formView = (
+      <Suspense fallback={<Loading />}>
+        <FeedbackForm formConfig={formConfig} csrf={csrf} />
+      </Suspense>
+    );
+  }
+
+  return (
+    <>
+      {contactView}
+      {formView}
+    </>
+  );
 }

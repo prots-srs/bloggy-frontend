@@ -1,7 +1,7 @@
 "use client"
 
-import CommentForm from "./commentform";
-import CommentItem from "./commentitem";
+import CommentForm from "@components/commentform";
+import CommentItem from "@components/commentitem";
 
 import { useState } from "react";
 

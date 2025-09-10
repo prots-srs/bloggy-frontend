@@ -1,5 +1,5 @@
 
-import messages from '../lib/messages';
+import messages from '@lib/messages';
 
 export default async function Footer() {
   return (

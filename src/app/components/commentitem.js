@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import CommentForm from "./commentform";
+import CommentForm from "@components/commentform";
 
 export default function CommentItem({ comment, storyId, csrf, activeCommentId, setActiveCommentId }) {
   let kids = null;

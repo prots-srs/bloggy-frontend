@@ -2,33 +2,30 @@
 
 import messages from '@lib/messages';
 import Form from 'next/form'
-import { putComment } from '../lib/actions'
+import putComment from '@lib/actioncomment'
 import { useActionState } from "react";
 
 export default function CommentForm({ storyId, parentId, csrf }) {
 
   const initialState = {
-    errors: {
-      name: "",
-      email: "",
-      message: ""
+    success: false,
+    name: {
+      value: "",
+      error: ""
     },
-    values: {
-      name: "",
-      email: "",
-      message: ""
+    email: {
+      value: "",
+      error: ""
+    },
+    message: {
+      value: "",
+      error: ""
     }
-  }
+  };
   const [state, formAction, isPending] = useActionState(putComment, initialState);
 
-  if (!("errors" in state)) {
-    return (
-      <></>
-    );
-  }
-
   let generalError = null;
-  if ("general" in state.errors) {
+  if ("general" in state) {
     generalError = <div className="alert alert-danger">
       {state.errors.general}
     </div>;
@@ -59,27 +56,27 @@ export default function CommentForm({ storyId, parentId, csrf }) {
             type="text"
             id="name"
             name="name"
-            className={`form-control ${state?.errors?.name ? "is-invalid" : ""}`}
-            defaultValue={state?.values?.name}
+            className={`form-control ${state?.name?.error ? "is-invalid" : ""}`}
+            defaultValue={state?.name?.value}
             required
           />
           <div className="invalid-feedback">
-            {state?.errors?.name}
+            {state?.name?.error}
           </div>
         </div>
 
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
-            type="text"
+            type="email"
             id="email"
             name="email"
-            className={`form-control ${state?.errors?.email ? "is-invalid" : ""}`}
-            defaultValue={state?.values?.email}
+            className={`form-control ${state?.email?.error ? "is-invalid" : ""}`}
+            defaultValue={state?.email?.value}
 
           />
           <div className="invalid-feedback">
-            {state?.errors?.email}
+            {state?.email?.error}
           </div>
         </div>
 
@@ -88,13 +85,13 @@ export default function CommentForm({ storyId, parentId, csrf }) {
           <textarea
             id="message"
             name="message"
-            className={`form-control ${state?.errors?.message ? "is-invalid" : ""}`}
-            defaultValue={state?.values?.message}
+            className={`form-control ${state?.message?.error ? "is-invalid" : ""}`}
+            defaultValue={state?.message?.value}
 
             rows={5}
           />
           <div className="invalid-feedback">
-            {state?.errors?.message}
+            {state?.message?.error}
           </div>
         </div>
 

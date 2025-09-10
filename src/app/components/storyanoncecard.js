@@ -1,5 +1,5 @@
 import Link from "next/link";
-import messages from '../lib/messages';
+import messages from '@lib/messages';
 
 
 export default function StoryAnonceCard({ urlPage, item }) {

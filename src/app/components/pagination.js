@@ -1,4 +1,4 @@
-import messages from '../lib/messages';
+import messages from '@lib/messages';
 import Link from 'next/link';
 
 export default function Pagination({ url, pagin }) {

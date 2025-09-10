@@ -1,6 +1,7 @@
-import getRequest from '../lib/data';
+import getRequest from '@lib/data';
 import Image from 'next/image';
-import messages from '../lib/messages';
+import messages from '@lib/messages';
+import Link from 'next/link';
 
 
 // function sleep(ms) {
@@ -39,7 +40,7 @@ export default async function Sidebar() {
             </a>
           ))}
         </div>
-        <a href="" className="btn btn-lg btn-block btn-primary mt-auto">{messages.sidebar.button}</a>
+        <Link href="/contact#feedback" className="btn btn-lg btn-block btn-primary mt-auto">{messages.sidebar.button}</Link>
       </div>
       <div className="sidebar-icon d-flex flex-column h-100 justify-content-center text-right">
         <i className="fas fa-2x fa-angle-double-right text-primary"></i>
